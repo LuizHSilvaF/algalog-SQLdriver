@@ -21,4 +21,8 @@ public class ClienteService {
 	public Cliente findById(Long id) {
 		return repo.findById(id).get();
 	}
+	
+	public Cliente adicionar(Cliente cliente) {
+		return repo.save(cliente);
+	}
 }
