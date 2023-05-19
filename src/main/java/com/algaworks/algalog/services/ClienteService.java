@@ -25,4 +25,9 @@ public class ClienteService {
 	public Cliente adicionar(Cliente cliente) {
 		return repo.save(cliente);
 	}
+	
+	public Cliente atualizar(Long id, Cliente cliente) {
+		cliente.setId(id);
+		return repo.save(cliente);
+	}
 }
