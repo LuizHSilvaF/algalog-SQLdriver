@@ -30,4 +30,8 @@ public class ClienteService {
 		cliente.setId(id);
 		return repo.save(cliente);
 	}
+	
+	public void excluir(Long id) {
+		repo.deleteById(id);
+	}
 }
