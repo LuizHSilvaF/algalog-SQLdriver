@@ -17,4 +17,8 @@ public class ClienteService {
 	public List<Cliente> findAll(){
 		return repo.findAll();
 	}
+	
+	public Cliente findById(Long id) {
+		return repo.findById(id).get();
+	}
 }
