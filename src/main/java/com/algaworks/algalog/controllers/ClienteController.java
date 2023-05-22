@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.algaworks.algalog.entities.Cliente;
 import com.algaworks.algalog.services.ClienteService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteController {
@@ -36,12 +38,12 @@ public class ClienteController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente adicionar(@RequestBody Cliente cliente) {
+	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
 		return service.adicionar(cliente);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public Cliente atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
+	public Cliente atualizar(@PathVariable Long id,@Valid @RequestBody Cliente cliente) {
 		return service.atualizar(id, cliente);
 	}
 	
