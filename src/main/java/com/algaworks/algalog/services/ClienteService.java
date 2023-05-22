@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.algaworks.algalog.entities.Cliente;
+import com.algaworks.algalog.exception.NegocioException;
 import com.algaworks.algalog.repositories.ClienteRepository;
 
 @Service
@@ -22,14 +23,16 @@ public class ClienteService {
 		return repo.findById(id).get();
 	}
 	
-	public Cliente adicionar(Cliente cliente) {
+	public Cliente salvar(Cliente cliente) {
+		boolean emailEMUso = repo.findByEmail(cliente.getEmail()).stream().anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
+		
+		if(emailEMUso) {
+			throw new NegocioException("Já existe um cliente cadastrado com esse e-mail.");
+	}
 		return repo.save(cliente);
 	}
 	
-	public Cliente atualizar(Long id, Cliente cliente) {
-		cliente.setId(id);
-		return repo.save(cliente);
-	}
+	
 	
 	public void excluir(Long id) {
 		repo.deleteById(id);

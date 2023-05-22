@@ -39,12 +39,13 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return service.adicionar(cliente);
+		return service.salvar(cliente);
 	}
 	
 	@PutMapping(value = "/{id}")
 	public Cliente atualizar(@PathVariable Long id,@Valid @RequestBody Cliente cliente) {
-		return service.atualizar(id, cliente);
+		cliente.setId(id);
+		return service.salvar(cliente);
 	}
 	
 	@DeleteMapping(value = "/{id}")
