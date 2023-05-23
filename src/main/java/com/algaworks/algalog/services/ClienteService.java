@@ -23,6 +23,10 @@ public class ClienteService {
 		return repo.findById(id).get();
 	}
 	
+	public Cliente buscar(Long clienteId) {
+		return repo.findById(clienteId).orElseThrow(() -> new NegocioException("Cliente não encontrado"));
+	}
+	
 	public Cliente salvar(Cliente cliente) {
 		boolean emailEMUso = repo.findByEmail(cliente.getEmail()).stream().anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
 		
