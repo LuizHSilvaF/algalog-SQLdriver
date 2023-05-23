@@ -36,4 +36,6 @@ public class EntregaService {
 	public List<Entrega> findAll(){
 		return repo.findAll();
 	}
+	
+
 }
